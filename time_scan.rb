@@ -1,9 +1,13 @@
-filename = ARGV.shift
+samples_dir = ARGV.shift
+samples = Dir.glob("#{samples_dir}/*.out")
 
-contents = File.read(filename)
+puts samples_dir
 
-times = contents.scan(/\(\s(.+?)\)/).flatten
-times = times.values_at(* times.each_index.select {|i| i.odd?})
-times = times.map { |item| item.to_f * 3 }
+samples.each do |sample|
+  contents = File.read(sample)
 
-puts times
+  times = contents.scan(/\(\s(.+?)\)/).flatten
+  times = times.values_at(* times.each_index.select {|i| i.odd?})
+
+  puts times[0].strip! unless times[0].nil?
+end

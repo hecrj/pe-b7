@@ -28,16 +28,21 @@ begin
     Dir.mkdir(samples_dir) unless Dir.exists?(samples_dir)
     
     # Make samples_dir path understandable for the current platform
-    samples_dir.gsub(File::SEPARATOR, File::ALT_SEPARATOR || File::SEPARATOR)
+    samples_path = samples_dir.gsub(File::SEPARATOR, File::ALT_SEPARATOR || File::SEPARATOR)
 
     # Each test has TEST_EXEC executions
     TEST_EXEC.times do |i|
       puts "Execution #{i+1}..."
 
-      test_ok = system("ruby #{test} > #{samples_dir}#{i+1}.out")
+      test_ok = system("ruby #{test} > #{samples_path}#{i+1}.out")
 
       raise "Execution #{i+1} of #{test} failed." unless test_ok
     end
+
+    # Scan and obtain test times
+    times_ok = system("ruby #{samples_dir} > #{samples_path}sample.dat")
+
+    raise "Time sacnning failed in test: #{test}" unless times_ok
   end
 
 # Exception handling
