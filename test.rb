@@ -42,7 +42,7 @@ begin
     # Scan and obtain test times
     times_ok = system("ruby #{samples_dir} > #{samples_path}sample.dat")
 
-    raise "Time sacnning failed in test: #{test}" unless times_ok
+    raise "Time scanning failed in test: #{test}" unless times_ok
   end
 
 # Exception handling
