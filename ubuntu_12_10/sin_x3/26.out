@@ -1,0 +1,9 @@
+Generating random array...
+Benchmarking...
+Rehearsal ---------------------------------------
+sin   4.160000   0.000000   4.160000 (  4.160758)
+------------------------------ total: 4.160000sec
+
+          user     system      total        real
+sin   4.160000   0.000000   4.160000 (  4.164846)
+Finished

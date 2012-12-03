@@ -1,0 +1,9 @@
+Generating random array...
+Benchmarking...
+Rehearsal -----------------------------------------
+sort!  10.624000   0.016000  10.640000 ( 11.155638)
+------------------------------- total: 10.640000sec
+
+            user     system      total        real
+sort!  11.076000   0.000000  11.076000 ( 11.414653)
+Finished

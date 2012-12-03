@@ -9,8 +9,6 @@ puts "Benchmarking..."
 Benchmark.bmbm do |x|
   x.report("product") do
     (10**7).times { |i| a[i] * b[i] }
-    (10**7).times { |i| a[i] * b[i] }
-    (10**7).times { |i| a[i] * b[i] }
   end
 end
 

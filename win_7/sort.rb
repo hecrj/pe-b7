@@ -1,5 +1,5 @@
 require 'benchmark'
-require '../utils'
+require './utils'
 
 puts "Generating random array..."
 numbers = rand_array(10**7)

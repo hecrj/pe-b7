@@ -25,7 +25,9 @@ begin
 
     # samples_dir = name of the test without .rb extension
     samples_dir = test.chomp(".rb") + "/"
-    Dir.mkdir(samples_dir) unless Dir.exists?(samples_dir)
+	
+	next if Dir.exists?(samples_dir)
+    Dir.mkdir(samples_dir)
     
     # Make samples_dir path understandable for the current platform
     samples_path = samples_dir.gsub(File::SEPARATOR, File::ALT_SEPARATOR || File::SEPARATOR)
@@ -40,9 +42,9 @@ begin
     end
 
     # Scan and obtain test times
-    times_ok = system("ruby #{samples_dir} > #{samples_path}sample.dat")
-
-    raise "Time scanning failed in test: #{test}" unless times_ok
+    # times_ok = system("ruby #{samples_dir} > #{samples_path}sample.dat")
+	#
+    # raise "Time scanning failed in test: #{test}" unless times_ok
   end
 
 # Exception handling

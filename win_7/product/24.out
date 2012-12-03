@@ -1,0 +1,9 @@
+Generating random arrays...
+Benchmarking...
+Rehearsal -------------------------------------------
+product   2.558000   0.032000   2.590000 (  2.613150)
+---------------------------------- total: 2.590000sec
+
+              user     system      total        real
+product   2.527000   0.000000   2.527000 (  2.524144)
+Finished

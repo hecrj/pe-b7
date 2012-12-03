@@ -9,5 +9,5 @@ samples.each do |sample|
   times = contents.scan(/\(\s(.+?)\)/).flatten
   times = times.values_at(* times.each_index.select {|i| i.odd?})
 
-  puts times[0].strip! unless times[0].nil?
+  puts times[0]
 end
