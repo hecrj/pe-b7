@@ -1,5 +1,3 @@
-TEST_EXEC = 30
-
 if(ARGV.size < 1)
   puts "Usage: test [PLATFORM]"
   puts
@@ -14,7 +12,7 @@ begin
   platform = ARGV.shift
 
   # Obtain test files
-  tests = Dir.glob("#{platform}/*.rb")
+  vectors = Dir.glob("vectors/*.dat")
 
   # No tests found!
   raise "No tests found for platform: #{platform}" if tests.empty?

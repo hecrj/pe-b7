@@ -1,13 +1,15 @@
 require 'benchmark'
 require './utils'
 
+size = ARGV.shift
+
 puts "Generating random array..."
-numbers = rand_array(10**6)
-  
+numbers = rand_array(size)
+
 puts "Benchmarking..."
 Benchmark.bmbm do |x|
-  x.report("sin") do
-    (10**6).times { |i| Math.sin(numbers[i]) }
+  x.report("sort!") do
+    numbers.dup.sort!
   end
 end
 
