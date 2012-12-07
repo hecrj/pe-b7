@@ -1,10 +1,14 @@
 require 'benchmark'
 require './utils'
 
-size = ARGV.shift
+numbers = []
 
-puts "Generating random array..."
-numbers = rand_array(size)
+n = gets
+
+until n.nil? do
+  numbers << n.to_i
+  n = gets
+end
 
 puts "Benchmarking..."
 Benchmark.bmbm do |x|

@@ -11,38 +11,28 @@ begin
   # Platform to test is the first argument
   platform = ARGV.shift
 
-  # Obtain test files
+  Dir.mkdir(platform) unless Dir.exists?(platform)
+
   vectors = Dir.glob("vectors/*.dat")
+  vectors.sort!
 
-  # No tests found!
-  raise "No tests found for platform: #{platform}" if tests.empty?
+  raise "No vectors found." if vectors.empty?
 
-  # Perform each test
-  tests.each do |test|
-    puts "Performing test: #{test}"
+  vectors.each do |v|
+    puts "Sorting #{v}..."
 
-    # samples_dir = name of the test without .rb extension
-    samples_dir = test.chomp(".rb") + "/"
+    filename = File.basename(v, ".dat");
 	
-	next if Dir.exists?(samples_dir)
-    Dir.mkdir(samples_dir)
+	  next if File.exists?("#{platform}/#{filename}.out")
     
-    # Make samples_dir path understandable for the current platform
-    samples_path = samples_dir.gsub(File::SEPARATOR, File::ALT_SEPARATOR || File::SEPARATOR)
+    vector_path = v.gsub!(File::SEPARATOR, File::ALT_SEPARATOR || File::SEPARATOR)
 
-    # Each test has TEST_EXEC executions
-    TEST_EXEC.times do |i|
-      puts "Execution #{i+1}..."
+    sample_path = "#{platform}/#{filename}.out"
+    sample_path.gsub!(File::SEPARATOR, File::ALT_SEPARATOR || File::SEPARATOR)
 
-      test_ok = system("ruby #{test} > #{samples_path}#{i+1}.out")
+    test_ok = system("ruby sort.rb < #{vector_path} > #{sample_path}")
 
-      raise "Execution #{i+1} of #{test} failed." unless test_ok
-    end
-
-    # Scan and obtain test times
-    # times_ok = system("ruby #{samples_dir} > #{samples_path}sample.dat")
-	#
-    # raise "Time scanning failed in test: #{test}" unless times_ok
+    raise "Sorting of #{v} failed." unless test_ok
   end
 
 # Exception handling
