@@ -1,5 +1,6 @@
 samples_dir = ARGV.shift
 samples = Dir.glob("#{samples_dir}/*.out")
+samples.sort!
 
 puts samples_dir
 
